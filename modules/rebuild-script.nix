@@ -20,10 +20,10 @@
     sudo nixos-rebuild switch --flake .#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
 
     # Commit all changes prompting for message
-    git commit -a
 
-    if [ "$?" -ne 0 ]; then
-        echo Cancelling...
+
+    if ! git commit -a; then
+        echo "Cancelling commit. Changes built but aren't commited!..."
         popd
         exit 1
     fi
