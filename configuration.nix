@@ -44,4 +44,14 @@
     $EDITOR=code
     $VISUAL=code
   '';
+
+  programs.git.config = {
+    init = {
+      defaultBranch = "main";
+    };
+    rebase = {
+      autosquash = true;
+      autostash = true;
+    };
+  };
 }
