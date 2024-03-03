@@ -1,4 +1,3 @@
-
 {
   description = "Nixos config flake";
 
@@ -19,13 +18,15 @@
     in
     {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         system = system;
-        modules = [ 
+        modules = [
           ./configuration.nix
           nixos-wsl.nixosModules.wsl
           # inputs.home-manager.nixosModules.default
         ];
       };
-  };
+
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+    };
 }
