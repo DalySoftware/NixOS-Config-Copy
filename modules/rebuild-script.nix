@@ -20,13 +20,14 @@
     sudo nixos-rebuild switch --flake .#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
 
     # Commit all changes prompting for message
-
-
     if ! git commit -a; then
         echo "Cancelling commit. Changes built but aren't commited!..."
         popd
         exit 1
     fi
+
+    # Push to remote
+    git push
 
     # Back to where you were
     popd
