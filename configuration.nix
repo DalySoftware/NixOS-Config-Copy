@@ -41,8 +41,8 @@
   '';
 
   environment.interactiveShellInit = ''
-    $EDITOR=code
-    $VISUAL=code
+    export EDITOR=code
+    export VISUAL=code
   '';
 
   programs.git.config = {
