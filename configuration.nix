@@ -1,21 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
-
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # imports = [
-    # include NixOS-WSL modules
-    # <nixos-wsl/modules>
+  # include NixOS-WSL modules
+  # <nixos-wsl/modules>
   # ];
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
-  
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -31,9 +31,10 @@
     git-crypt
     gnupg
     bat
+    alejandra
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   environment.shellInit = ''
     echo 'creating .bash_env_noninteractive'
