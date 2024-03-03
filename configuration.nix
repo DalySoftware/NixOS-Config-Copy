@@ -9,10 +9,9 @@
   pkgs,
   ...
 }: {
-  # imports = [
-  # include NixOS-WSL modules
-  # <nixos-wsl/modules>
-  # ];
+  imports = [
+    ./modules/rebuild-script.nix
+  ];
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
