@@ -9,7 +9,7 @@
     alejandra . -q
 
     # Shows your changes
-    git diff -U0 *.nix
+    git diff -U0 -- '*.nix'
 
     # Stage all changes so they are included in rebuild
     git add .
