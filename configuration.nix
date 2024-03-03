@@ -39,4 +39,9 @@
     echo 'creating .bash_env_noninteractive'
     echo 'export PATH=$PATH:/run/current-system/sw/bin' > ~/.bash_env_noninteractive
   '';
+
+  environment.interactiveShellInit = ''
+    $EDITOR=code
+    $VISUAL=code
+  '';
 }
