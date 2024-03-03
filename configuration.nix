@@ -26,11 +26,17 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    git
+    # git
     git-crypt
     gnupg
     bat
     alejandra
+  ];
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackages programs
+    # here, NOT in environment.systemPackages
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -45,6 +51,7 @@
     export VISUAL=code
   '';
 
+  programs.git.enable = true;
   programs.git.config = {
     init = {
       defaultBranch = "main";
@@ -52,6 +59,12 @@
     rebase = {
       autosquash = true;
       autostash = true;
+    };
+    push = {
+      autoSetupRemote = true;
+    };
+    core = {
+      editor = "code --wait";
     };
   };
 }
