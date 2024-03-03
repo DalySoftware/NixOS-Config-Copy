@@ -30,6 +30,7 @@
     git
     git-crypt
     gnupg
+    bat
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
