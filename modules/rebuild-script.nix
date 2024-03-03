@@ -14,14 +14,14 @@
     # Stage all changes so they are included in rebuild
     git add .
 
-    echo "NixOS Rebuilding..."
+    echo "🛠️ NixOS Rebuilding..."
 
     # Rebuild, output simplified errors, log tracebacks
     sudo nixos-rebuild switch --flake .#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
 
     # Commit all changes prompting for message
     if ! git commit -a; then
-        echo "Cancelling commit. Changes built but aren't commited!..."
+        echo "⚠️ Cancelling commit. Changes built but aren't commited!..."
         popd
         exit 1
     fi
@@ -33,7 +33,7 @@
     popd
 
     # Notify all OK!
-    # notify-send -e "NixOS Rebuilt OK!" --icon=software-update-available
+    echo "✅ NixOS Rebuilt"
   '';
 in {
   environment.systemPackages = [script];
