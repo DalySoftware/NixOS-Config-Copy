@@ -30,6 +30,7 @@
     gnupg
     bat
     alejandra
+    delta
   ];
 
   programs.nix-ld.enable = true;
@@ -52,6 +53,10 @@
 
   programs.git.enable = true;
   programs.git.config = {
+    core = {
+      editor = "code --wait";
+      pager = "delta";
+    };
     init = {
       defaultBranch = "main";
     };
@@ -62,8 +67,17 @@
     push = {
       autoSetupRemote = true;
     };
-    core = {
-      editor = "code --wait";
+    format = {
+      pretty = "oneline";
+    };
+    branch = {
+      sort = "-committerdate";
+    };
+    rerere = {
+      enabled = true;
+    };
+    alias = {
+      br = "! git for-each-ref --color --sort=-committerdate --format='%(color:blue)%(color:red)%(ahead-behind:main)%(color:blue);%(color:default)%(refname:short);%(color:yellow)%(committerdate:relative);%(color:blue)%(committername);%(color:default)%(subject)' refs/heads/ | column --separator=';' --table";
     };
   };
 }
