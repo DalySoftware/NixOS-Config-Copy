@@ -47,8 +47,8 @@
   '';
 
   environment.interactiveShellInit = ''
-    export EDITOR=code
-    export VISUAL=code
+    export EDITOR='code --wait'
+    export VISUAL='code --wait'
   '';
 
   programs.git.enable = true;
