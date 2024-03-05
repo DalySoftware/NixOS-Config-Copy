@@ -7,14 +7,23 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
     ./modules/nix-scripts.nix
+    inputs.home-manager.nixosModules.default
   ];
 
   wsl.enable = true;
   wsl.defaultUser = "nixos"; # This can't easily be changed while using wsl. https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/4
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      "nixos" = import ./home.nix;
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
