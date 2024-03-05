@@ -1,20 +1,17 @@
 {pkgs, ...}: let
-  rebuild = pkgs.writeShellScriptBin "rebuild" ''
-    set -e
+  config_dir = "~/.nix-config";
+  commit_and_push = ''
+    # Commit all changes prompting for message
+    if ! git commit -a; then
+        echo "⚠️ Cancelling commit. Changes built but aren't commited!..."
+        popd
+        exit 1
+    fi
 
-    # cd to your config dir
-    pushd ~/.nix-config/
-
-    # Autoformat your nix files
-    alejandra . -q
-
-    # Shows your changes
-    git diff -U0 -- '*.nix'
-
-    # Stage all changes so they are included in rebuild
-    git add .
-
-    ## Spinner stuff start ##
+    # Push to remote
+    git push
+  '';
+  add_spinner_function = ''
     spinner_pid=
     function start_spinner {
         set +m
@@ -30,8 +27,23 @@
     }
 
     trap stop_spinner EXIT
-    ## Spinner stuff end ##
+  '';
+  rebuild = pkgs.writeShellScriptBin "rebuild" ''
+    set -e
 
+    # cd to your config dir
+    pushd ${config_dir}
+
+    # Autoformat your nix files
+    alejandra . -q
+
+    # Shows your changes
+    git diff -U0 -- '*.nix'
+
+    # Stage all changes so they are included in rebuild
+    git add .
+
+    ${add_spinner_function}
     start_spinner "🛠️ NixOS Rebuilding"
 
     # Rebuild, output simplified errors, log tracebacks
@@ -39,15 +51,7 @@
 
     stop_spinner
 
-    # Commit all changes prompting for message
-    if ! git commit -a; then
-        echo "⚠️ Cancelling commit. Changes built but aren't commited!..."
-        popd
-        exit 1
-    fi
-
-    # Push to remote
-    git push
+    ${commit_and_push}
 
     # Back to where you were
     popd
@@ -57,7 +61,7 @@
   '';
 
   editConfig = pkgs.writeShellScriptBin "edit-sys-config" ''
-    code ~/.config/configuration.nix
+    code ${config_dir}/configuration.nix
   '';
 in {
   environment.systemPackages = [rebuild editConfig];
