@@ -26,8 +26,6 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    git-crypt
-    gnupg
     bat
     alejandra
     delta
