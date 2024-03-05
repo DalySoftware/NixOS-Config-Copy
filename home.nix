@@ -75,6 +75,10 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  home.file.".bash_env_noninteractive".text = ''
+    export PATH=$PATH:/run/current-system/sw/bin
+  '';
+
   programs.git.enable = true;
   programs.git.extraConfig = {
     core = {

@@ -48,11 +48,6 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  environment.shellInit = ''
-    echo 'creating .bash_env_noninteractive'
-    echo 'export PATH=$PATH:/run/current-system/sw/bin' > ~/.bash_env_noninteractive
-  '';
-
   environment.interactiveShellInit = ''
     export EDITOR='code --wait'
     export VISUAL='code --wait'
