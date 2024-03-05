@@ -10,7 +10,7 @@
   ...
 }: {
   imports = [
-    ./modules/rebuild-script.nix
+    ./modules/nix-scripts.nix
   ];
 
   wsl.enable = true;
