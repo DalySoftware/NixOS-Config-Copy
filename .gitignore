@@ -1,1 +1,5 @@
 nixos-switch.log
+
+# Home manager stuff
+environment.d
+git
