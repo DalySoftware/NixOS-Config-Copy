@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  script = pkgs.writeShellScriptBin "rebuild" ''
+  rebuild = pkgs.writeShellScriptBin "rebuild" ''
     set -e
 
     # cd to your config dir
@@ -35,6 +35,10 @@
     # Notify all OK!
     echo "✅ NixOS Rebuilt"
   '';
+
+  editConfig = pkgs.writeShellScriptBin "edit-sys-config" ''
+    code ~/.config/configuration.nix
+  '';
 in {
-  environment.systemPackages = [script];
+  environment.systemPackages = [rebuild editConfig];
 }
