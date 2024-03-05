@@ -14,7 +14,7 @@
   ];
 
   wsl.enable = true;
-  wsl.defaultUser = "nixos";
+  wsl.defaultUser = "nixos"; # This can't easily be changed while using wsl. https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/4
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
