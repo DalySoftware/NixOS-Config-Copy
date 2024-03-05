@@ -51,7 +51,10 @@
 
     stop_spinner
 
-    ${commit_and_push}
+    if ! [ "$1" = 'nc' -o "$1" = 'nocommit' ]
+    then
+      ${commit_and_push}
+    fi
 
     # Back to where you were
     popd
