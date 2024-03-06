@@ -88,6 +88,9 @@
     '';
   };
 
+  programs.zoxide.enable = true;
+  programs.zoxide.enableZshIntegration = true;
+
   programs.hstr.enable = true;
   programs.hstr.enableZshIntegration = true;
 
