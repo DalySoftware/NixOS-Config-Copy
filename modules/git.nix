@@ -5,6 +5,12 @@
       editor = "code --wait";
       pager = "delta";
     };
+    delta = {
+      side-by-side = true;
+      hunk-header-style = "omit";
+      zero-style = "dim";
+      hyperlinks = true;
+    };
     init = {
       defaultBranch = "main";
     };
