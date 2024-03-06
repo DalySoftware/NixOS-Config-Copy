@@ -3,3 +3,4 @@ nixos-switch.log
 # Home manager stuff
 environment.d
 git
+oh-my-posh

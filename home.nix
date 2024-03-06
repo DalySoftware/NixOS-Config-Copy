@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./modules/git.nix
+    ./modules/shell/shell.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -78,21 +79,6 @@
     EDITOR = "code --wait";
     VISUAL = "code --wait";
   };
-
-  programs.zsh = {
-    enable = true;
-    enableAutosuggestions = true;
-    initExtra = ''
-      export HSTR_CONFIG="prompt-bottom,raw-history-view,hicolor";
-      bindkey -s "$terminfo[kcuu1]" "\C-a hstr -- \C-j";
-    '';
-  };
-
-  programs.zoxide.enable = true;
-  programs.zoxide.enableZshIntegration = true;
-
-  programs.hstr.enable = true;
-  programs.hstr.enableZshIntegration = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
