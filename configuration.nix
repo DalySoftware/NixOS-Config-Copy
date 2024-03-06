@@ -47,9 +47,4 @@
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  environment.interactiveShellInit = ''
-    export EDITOR='code --wait'
-    export VISUAL='code --wait'
-  '';
 }
