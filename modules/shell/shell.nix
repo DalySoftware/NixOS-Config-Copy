@@ -8,6 +8,10 @@ in {
       export HSTR_CONFIG="prompt-bottom,raw-history-view,hicolor";
       bindkey -s "$terminfo[kcuu1]" "\C-a hstr -- \C-j";
     '';
+    completionInit = ''
+      autoload -Uz compinit && compinit
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+    '';
   };
 
   programs.zoxide.enable = true;
