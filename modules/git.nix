@@ -34,4 +34,8 @@
       br = "! git for-each-ref --color --sort=-committerdate --format='%(color:blue)%(color:red)%(ahead-behind:main)%(color:blue);%(color:default)%(refname:short);%(color:yellow)%(committerdate:relative);%(color:blue)%(committername);%(color:default)%(subject)' refs/heads/ | column --separator=';' --table";
     };
   };
+
+  home.packages = with pkgs; [
+    delta
+  ];
 }
