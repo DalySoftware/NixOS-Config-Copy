@@ -35,7 +35,6 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    bat
   ];
 
   programs.nix-ld.enable = true;
