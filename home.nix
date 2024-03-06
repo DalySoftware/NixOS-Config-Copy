@@ -79,7 +79,15 @@
     VISUAL = "code --wait";
   };
 
-  programs.bash.enable = true;
+  programs.zsh.enable = true;
+
+  programs.hstr.enable = true;
+  programs.hstr.enableZshIntegration = true;
+
+  programs.zsh.initExtra = ''
+    export HSTR_CONFIG="prompt-bottom,raw-history-view,hicolor";
+    bindkey -s "$terminfo[kcuu1]" "\C-a hstr -- \C-j";
+  '';
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

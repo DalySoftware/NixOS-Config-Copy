@@ -25,6 +25,9 @@
     };
   };
 
+  programs.zsh.enable = true;
+  users.users.nixos.shell = pkgs.zsh;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
