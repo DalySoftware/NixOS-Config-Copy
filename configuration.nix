@@ -36,7 +36,6 @@
   environment.systemPackages = with pkgs; [
     wget
     bat
-    alejandra
     delta
   ];
 

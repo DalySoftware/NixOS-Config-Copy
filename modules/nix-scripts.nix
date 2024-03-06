@@ -67,5 +67,9 @@
     code ${config_dir}/configuration.nix
   '';
 in {
-  environment.systemPackages = [rebuild editConfig];
+  environment.systemPackages = [
+    rebuild
+    editConfig
+    pkgs.alejandra
+  ];
 }
