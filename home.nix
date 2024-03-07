@@ -80,6 +80,13 @@
     VISUAL = "code --wait";
   };
 
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+    git = true;
+    icons = true;
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
