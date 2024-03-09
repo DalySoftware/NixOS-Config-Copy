@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   ompTheme = ./pure_custom.omp.json;
 in {
   programs.zsh = {
