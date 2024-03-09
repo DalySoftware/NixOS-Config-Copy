@@ -5,12 +5,26 @@
       "alignment": "left",
       "segments": [
         {
+          "foreground": "#BF616A",
+          "template": "{{ .HostName }} ",
+          "style": "plain",
+          "type": "session"
+        },
+        {
+          "properties": {
+            "macos": "mac"
+          },
+          "style": "plain",
+          "template": "{{.Icon}} ",
+          "type": "os"
+        },
+        {
           "foreground": "#81A1C1",
           "properties": {
             "style": "full"
           },
           "style": "plain",
-          "template": "{{ .Path }} ",
+          "template": " {{ .Path }}",
           "type": "path"
         }
       ],
@@ -22,7 +36,7 @@
         {
           "foreground": "#6C6C6C",
           "properties": {
-            "branch_icon": "\uE0A0 ",
+            "branch_icon": " \ue0a0 ",
             "branch_ahead_icon": "<#88C0D0>\u21e1 </>",
             "branch_behind_icon": "<#88C0D0>\u21e3 </>",
             "fetch_status": true,
