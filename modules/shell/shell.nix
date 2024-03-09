@@ -23,11 +23,10 @@ in {
     settings = builtins.fromJSON (builtins.readFile ompTheme);
   };
 
-  programs.hstr.enable = true;
-  programs.hstr.enableZshIntegration = lib.mkAfter true;
-  programs.zsh.initExtra = lib.mkAfter ''
-    export HSTR_CONFIG="prompt-bottom,raw-history-view,hicolor";
-  '';
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.fzf = {
     enable = true;
