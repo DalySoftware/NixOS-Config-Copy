@@ -4,6 +4,7 @@
   ...
 }: {
   home.file.".vscode-server/server-env-setup".source = ./server-env-setup;
+  home.file.".vscode-server/data/Machine/settings.json".source = ./settings.json;
 
   home.packages = with pkgs; [
     nil
