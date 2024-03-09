@@ -26,6 +26,7 @@ in {
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
+    package = pkgs.unstable.atuin;
   };
 
   programs.fzf = {

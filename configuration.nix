@@ -18,7 +18,10 @@
   wsl.defaultUser = "nixos"; # This can't easily be changed while using wsl. https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/4
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit pkgs;
+    };
     users = {
       "nixos" = import ./home.nix;
     };
