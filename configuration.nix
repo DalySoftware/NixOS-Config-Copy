@@ -23,7 +23,7 @@
       inherit pkgs;
     };
     users = {
-      "nixos" = import ./home.nix;
+      "nixos".imports = [./home.nix];
     };
   };
 
