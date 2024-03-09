@@ -64,7 +64,7 @@
   '';
 
   editConfig = pkgs.writeShellScriptBin "edit-sys-config" ''
-    code ${config_dir}/configuration.nix
+    code ${config_dir}
   '';
 in {
   environment.systemPackages = [
