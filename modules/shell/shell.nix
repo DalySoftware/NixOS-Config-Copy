@@ -29,6 +29,11 @@ in {
     export HSTR_CONFIG="prompt-bottom,raw-history-view,hicolor";
   '';
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   home.packages = with pkgs; [
     nerdfonts
   ];
