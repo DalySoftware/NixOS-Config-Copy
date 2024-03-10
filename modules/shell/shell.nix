@@ -23,6 +23,10 @@ in {
     enable = true;
     enableZshIntegration = true;
     package = pkgs.unstable.atuin;
+    settings = {
+      style = "compact";
+      enter_accept = true;
+    };
   };
 
   programs.fzf = {
