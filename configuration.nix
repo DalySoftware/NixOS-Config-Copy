@@ -16,6 +16,7 @@
 
   wsl.enable = true;
   wsl.defaultUser = "nixos"; # This can't easily be changed while using wsl. https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/4
+  nixpkgs.hostPlatform.system = "x86_64-linux";
 
   home-manager = {
     extraSpecialArgs = {

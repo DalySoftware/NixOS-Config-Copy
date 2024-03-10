@@ -19,14 +19,12 @@
     nixpkgs-unstable,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
     overlay-unstable = final: prev: {
       unstable = nixpkgs-unstable.legacyPackages.${prev.system};
     };
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
-      inherit system;
       modules = [
         # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
         ({
