@@ -3,7 +3,7 @@
   commit_and_push = ''
     # Commit all changes prompting for message
     if ! git commit -a; then
-        echo "⚠️ Cancelling commit. Changes built but aren't commited!..."
+        echo "ℹ️ NixOS rebuilt but nothing committed!"
         popd
         exit 1
     fi
@@ -60,7 +60,7 @@
     popd
 
     # Notify all OK!
-    echo "✅ NixOS Rebuilt"
+    echo "✅ NixOS rebuilt"
   '';
 
   editConfig = pkgs.writeShellScriptBin "edit-sys-config" ''
