@@ -34,6 +34,8 @@ in {
     enableZshIntegration = true;
   };
 
+  programs.bat.enable = true;
+
   home.packages = with pkgs; [
     nerdfonts
   ];
