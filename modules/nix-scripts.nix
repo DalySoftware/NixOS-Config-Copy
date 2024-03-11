@@ -32,7 +32,7 @@
     set -e
 
     # cd to your config dir
-    pushd ${config_dir}
+    pushd ${config_dir} > /dev/null
 
     # Autoformat your nix files
     alejandra . -q
@@ -57,7 +57,7 @@
     fi
 
     # Back to where you were
-    popd
+    popd > /dev/null
 
     # Notify all OK!
     echo "✅ NixOS rebuilt"
