@@ -5,8 +5,8 @@
 }: {
   imports = [
     ./modules/git.nix
-    ./modules/shell/shell.nix
-    ./modules/vscode/vscode.nix
+    ./modules/shell
+    ./modules/vscode
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
