@@ -2,7 +2,7 @@
   programs.git.enable = true;
   programs.git.extraConfig = {
     core = {
-      editor = "code --wait";
+      editor = "nvim";
       pager = "delta";
     };
     delta = {

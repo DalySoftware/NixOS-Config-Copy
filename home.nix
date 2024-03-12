@@ -76,8 +76,8 @@
   #  /etc/profiles/per-user/nixos/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "code --wait";
-    VISUAL = "code --wait";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   programs.eza = {
