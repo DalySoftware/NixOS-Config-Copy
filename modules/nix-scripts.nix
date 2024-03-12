@@ -1,5 +1,6 @@
 {pkgs, ...}: let
   config_dir = "~/.nix-config";
+
   commit_and_push = ''
     # Commit all changes prompting for message
     if ! git commit -a; then
@@ -11,6 +12,7 @@
     # Push to remote
     git push
   '';
+
   add_spinner_function = ''
     spinner_pid=
     function start_spinner {
@@ -28,11 +30,35 @@
 
     trap stop_spinner EXIT
   '';
-  rebuild = pkgs.writeShellScriptBin "rebuild" ''
+
+  setup = ''
     set -e
 
     # cd to your config dir
     pushd ${config_dir} > /dev/null
+
+  '';
+
+  teardown = ''
+    # Back to where you were
+    popd > /dev/null
+
+    # Notify all OK!
+    echo "✅ NixOS rebuilt"
+  '';
+
+  rebuild_switch = ''
+    ${add_spinner_function}
+    start_spinner "🛠️ NixOS Rebuilding"
+
+    # Rebuild, output simplified errors, log tracebacks
+    sudo nixos-rebuild switch --flake .#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
+
+    stop_spinner
+  '';
+
+  rebuild = pkgs.writeShellScriptBin "rebuild" ''
+    ${setup}
 
     # Autoformat your nix files
     alejandra . -q
@@ -43,24 +69,23 @@
     # Stage all changes so they are included in rebuild
     git add .
 
-    ${add_spinner_function}
-    start_spinner "🛠️ NixOS Rebuilding"
-
-    # Rebuild, output simplified errors, log tracebacks
-    sudo nixos-rebuild switch --flake .#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
-
-    stop_spinner
+    ${rebuild_switch}
 
     if ! [ "$1" = 'nc' -o "$1" = 'nocommit' ]
     then
       ${commit_and_push}
     fi
 
-    # Back to where you were
-    popd > /dev/null
+    ${teardown}
+  '';
 
-    # Notify all OK!
-    echo "✅ NixOS rebuilt"
+  pull-rebuild = pkgs.writeShellScriptBin "pull-rebuild" ''
+    ${setup}
+
+    git pull
+    ${rebuild_switch}
+
+    ${teardown}
   '';
 
   editConfig = pkgs.writeShellScriptBin "edit-sys-config" ''
@@ -69,6 +94,7 @@
 in {
   environment.systemPackages = [
     rebuild
+    pull-rebuild
     editConfig
     pkgs.alejandra
   ];
